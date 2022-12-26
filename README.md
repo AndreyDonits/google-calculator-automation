@@ -58,4 +58,6 @@ This will stop and remove the containers, networks, and volumes created by the `
 The docker-compose file defines four containers: `chrome`, `edge`, `firefox`, and `selenium-hub`.<br>
 The `selenium-hub` container is the hub of a Selenium grid, which allows you to run tests in multiple browsers.<br>
 The `chrome`, `edge`, and `firefox` containers are nodes that can connect to the hub and execute tests in the respective browsers.<br>
-The `depends_on` directive specifies that the nodes should not start until the `selenium-hub` container is up and running.
+The `depends_on` directive specifies that the nodes should not start until the `selenium-hub` container is up and running.<br>
+
+To see the running sessions on each browser you can open the selenium-grid UI console on: http://localhost:4444
