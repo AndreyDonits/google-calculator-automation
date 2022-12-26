@@ -1,15 +1,19 @@
+import { By } from "selenium-webdriver";
+
 const calculatorSelectors = {
 
+    allCalcButtons: By.css(".SKWP2e td [role='button']"),
+
     // Keys
-    key0: "[jsname='bkEvMb']",
-    key1: "[jsname='N10B9']",
-    key5: "[jsname='Ax5wH']",
-    keyPlus: "[jsname='XSr6wc']",
-    keyEq: "[jsname='Pt8tGc']",
+    key0: By.css("[jsname='bkEvMb']"),
+    key1: By.css("[jsname='N10B9']"),
+    key5: By.css("[jsname='Ax5wH']"),
+    keyPlus: By.css("[jsname='XSr6wc']"),
+    keyEq: By.css("[jsname='Pt8tGc']"),
 
     // Result panel
-    result: "#cwos",
-    lastCalculationOfTheResult: "[jsname='ubtiRe']"
+    result: By.id("cwos"),
+    lastCalculationOfTheResult: By.css("[jsname='ubtiRe']")
 }
 
 export { calculatorSelectors };

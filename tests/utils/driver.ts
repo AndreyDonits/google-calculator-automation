@@ -1,11 +1,6 @@
 import { ThenableWebDriver } from "selenium-webdriver";
-import webdriver from "selenium-webdriver";
+import webdriver, { Browser } from "selenium-webdriver";
 import { getBaseUrl } from "../assets/routes";
-
-const browserArgIndex = process.argv.findIndex((arg) =>
-  arg.startsWith("--browser")
-);
-const browserType = process.argv[browserArgIndex + 1];
 
 let driver: ThenableWebDriver;
 
@@ -13,27 +8,18 @@ const getDriver = (): ThenableWebDriver => {
   return driver;
 }
 
-const setDriver = () => {
-  switch (browserType) {
-    case "chrome":
-      driver = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.chrome())
-        .build();
-      break;
-    case "firefox":
-      driver = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.firefox())
-        .build();
-      break;
-    default:
-      console.info(
-        "Since browser args was not provided in command proceeding with default (Chrome)"
-      );
-      driver = new webdriver.Builder()
-        .withCapabilities(webdriver.Capabilities.chrome())
-        .build();
-      break;
-  }
+const setDriverLocal = (browserType: string = Browser.CHROME) => {
+  driver = new webdriver.Builder()
+    .forBrowser(browserType)
+    .build();
+  driver.manage().setTimeouts({ implicit: 10000 });
+};
+
+const setDriverAgainstDocker = (seleniumServerPort: number, browserType: string = Browser.CHROME) => {
+  driver = new webdriver.Builder()
+    .forBrowser(browserType)
+    .usingServer(`http://localhost:${seleniumServerPort}/wd/hub/`)
+    .build();
   driver.manage().setTimeouts({ implicit: 10000 });
 };
 
@@ -55,4 +41,4 @@ const closeBrowser = async () => {
   await driver.quit();
 };
 
-export { getDriver, setDriver, navigateTo, closeBrowser, getTestTimeout };
+export { getDriver, setDriverLocal, setDriverAgainstDocker, navigateTo, closeBrowser, getTestTimeout };
