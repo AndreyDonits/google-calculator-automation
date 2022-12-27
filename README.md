@@ -42,7 +42,7 @@ The method also sets the implicit wait timeout for the driver using the `setTime
 This timeout specifies the amount of time the driver should wait for elements to appear on the page before timing out.<br>
 
 ## Run tests using selenium grid & Docker
-To build the `docker-compose.yml` file, you will need to have Docker (running) and Docker Compose installed on your machine.>br>
+To build the `docker-compose.yml` file, you will need to have Docker (running) and Docker Compose installed on your machine.<br>
 To build the containers specified in the docker-compose file, navigate to the directory where the file is located and run the following command:
 ```
 docker-compose up
